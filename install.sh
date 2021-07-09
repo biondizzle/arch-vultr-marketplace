@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # install required packages
-pacman -S --noconfirm -y git
-pacman -S --noconfirm -y make
-pacman -S --noconfirm -y python-pip
-pacman -S --noconfirm -y cloud-guest-utils
+pacman -S --noconfirm git
+pacman -S --noconfirm make
+pacman -S --noconfirm python-pip
+pacman -S --noconfirm cloud-guest-utils
 
 # checkout benner's branch
 git clone https://github.com/eb3095/cloud-init.git
