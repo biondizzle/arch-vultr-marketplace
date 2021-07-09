@@ -103,6 +103,7 @@ fi
 # WANTS TO PREPARE FOR THE MARKETPLACE
 if [[ $PREPARE_FOR_MARKETPLACE -gt 0 ]]; then
     # Clean up for marketplace
+    rm -rf cloud-init/* # This is assuming you installed cloud init here and there is the repo folder still there
     rm -rf /tmp/*
     rm -rf /var/tmp/*
     rm -f /root/.ssh/authorized_keys /etc/ssh/*key*
