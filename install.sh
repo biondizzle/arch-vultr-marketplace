@@ -48,8 +48,19 @@ if [[ $INSTALL_CLOUD_INIT -gt 0 ]]; then
     pacman -S --noconfirm python-pip
     pacman -S --noconfirm cloud-guest-utils
 
-    # checkout benner's branch
-    git clone https://github.com/eb3095/cloud-init.git
+    # checkout nightly branch branch
+    # THE MASTER BRANCH ON THE UPSTREAM HAS BEEN RENAMED TO 'MAIN'
+    # If you get an error about version differences, do this
+    # git checkout vultr-nightly
+    # git remote add upstream https://github.com/canonical/cloud-init.git
+    # git fetch upstream
+    # git checkout main
+    # git merge upstream/main
+    # git pull upstream
+    # git checkout vultr-nightly
+    # git merge main
+    # git push
+    git clone https://github.com/biondizzle/cloud-init.git
     cd cloud-init
     git checkout vultr-nightly
 
