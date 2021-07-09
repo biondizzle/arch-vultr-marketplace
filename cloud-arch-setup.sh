@@ -33,6 +33,11 @@ useradd -m yay
 sudo nano /etc/sudoers
 # yay  ALL=(ALL) NOPASSWD:ALL
 
+# Block yay user from ssh
+#https://www.2daygeek.com/allow-deny-enable-disable-ssh-access-user-group-in-linux/#:~:text=If%20you%20would%20like%20to%20disable%20more%20than%20one%20user,disable%20ssh%20access%20for%20user1%20.
+sudo nano /etc/ssh/sshd_config
+# DenyUsers yay
+
 # login as yay and install yay
 su yay
 git clone https://aur.archlinux.org/yay.git
