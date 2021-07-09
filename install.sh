@@ -50,7 +50,7 @@ if [[ $INSTALL_CLOUD_INIT -gt 0 ]]; then
 
     # checkout nightly branch branch
     # THE MASTER BRANCH ON THE UPSTREAM HAS BEEN RENAMED TO 'MAIN'
-    # If you get an error about version differences, do this
+    # If you get an error about version differences, I HAVE do this
     # git checkout vultr-nightly
     # git remote add upstream https://github.com/canonical/cloud-init.git
     # git fetch upstream
@@ -60,6 +60,11 @@ if [[ $INSTALL_CLOUD_INIT -gt 0 ]]; then
     # git checkout vultr-nightly
     # git merge main
     # git push
+    # THEN THE PERSON RUNNING this script has to do this
+    # git checkout vultr-nightly
+    # git remote add upstream https://git.launchpad.net/cloud-init
+    # git fetch upstream --tags
+    # and THEEENNN they can build
     git clone https://github.com/biondizzle/cloud-init.git
     cd cloud-init
     git checkout vultr-nightly
@@ -71,7 +76,7 @@ if [[ $INSTALL_CLOUD_INIT -gt 0 ]]; then
 
     # Install
     python3 setup.py install --init-system systemd
-    ln -s /usr/local/bin/cloud-init /usr/bin/cloud-init
+    #ln -s /usr/local/bin/cloud-init /usr/bin/cloud-init # dont need to do this for arch??
 
     # Enable service
     systemctl enable --now cloud-init-local.service
