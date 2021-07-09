@@ -43,7 +43,7 @@ fi
 # WANTS TO INSTALL CLOUD INIT
 if [[ $INSTALL_CLOUD_INIT -gt 0 ]]; then
     # install required packages
-    pacman -S --noconfirm dhclient
+    pacman -S --noconfirm dhclient # THIS IS VERY IMPORTANT! cloud-init will not work right without this
     pacman -S --noconfirm git
     pacman -S --noconfirm make
     pacman -S --noconfirm python-pip
@@ -92,9 +92,9 @@ if [[ $INSTALL_CLOUD_INIT -gt 0 ]]; then
     echo "$BLOCK_SEPARATOR"
     echo ""
     echo "Time to add the Vultr Kernel Option!!!"
-    echo "run `nano /etc/default/grub`"
-    echo "add `vultr` to GRUB_CMDLINE_LINUX_DEFAULT=''"
-    echo "Then just run `update-grub` (available on AUR) OR `sudo grub-mkconfig -o /boot/grub/grub.cfg`"
+    echo "run nano /etc/default/grub"
+    echo "add vultr to GRUB_CMDLINE_LINUX_DEFAULT=''"
+    echo "Then just run update-grub (available on AUR) OR sudo grub-mkconfig -o /boot/grub/grub.cfg"
     echo ""
     echo "$BLOCK_SEPARATOR"
     echo ""
@@ -106,8 +106,8 @@ fi
 # WANTS TO PREPARE FOR THE MARKETPLACE
 if [[ $PREPARE_FOR_MARKETPLACE -gt 0 ]]; then
     # Clean up for marketplace
-    sudo pacman -Sc
-    rm -rf cloud-init/* # This is assuming you installed cloud init here and there is the repo folder still there
+    sudo pacman -Sc # Answer yes to both of these?
+    rm -rf cloud-init # This is assuming you installed cloud init here and there is the repo folder still there
     rm -rf /tmp/*
     rm -rf /var/tmp/*
     rm -f /root/.ssh/authorized_keys /etc/ssh/*key*
