@@ -43,6 +43,7 @@ fi
 # WANTS TO INSTALL CLOUD INIT
 if [[ $INSTALL_CLOUD_INIT -gt 0 ]]; then
     # install required packages
+    pacman -S --noconfirm dhclient
     pacman -S --noconfirm git
     pacman -S --noconfirm make
     pacman -S --noconfirm python-pip
@@ -68,6 +69,8 @@ if [[ $INSTALL_CLOUD_INIT -gt 0 ]]; then
     git clone https://github.com/biondizzle/cloud-init.git
     cd cloud-init
     git checkout vultr-nightly
+    git remote add upstream https://git.launchpad.net/cloud-init
+    git fetch upstream --tags
 
     # Compile
     pip3 install -r requirements.txt
@@ -103,6 +106,7 @@ fi
 # WANTS TO PREPARE FOR THE MARKETPLACE
 if [[ $PREPARE_FOR_MARKETPLACE -gt 0 ]]; then
     # Clean up for marketplace
+    sudo pacman -Sc
     rm -rf cloud-init/* # This is assuming you installed cloud init here and there is the repo folder still there
     rm -rf /tmp/*
     rm -rf /var/tmp/*
@@ -128,6 +132,7 @@ if [[ $PREPARE_FOR_MARKETPLACE -gt 0 ]]; then
     rm /zerofile
     sync
     fstrim /
+    cloud-init clean
 
     exit 0
 fi
